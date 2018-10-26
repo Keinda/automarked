@@ -5,12 +5,12 @@ import json
 model = ietf_interfaces()
 
 ## Add New Interface
-new_interface = model.interfaces.interface.add('GigabitEthernet4')
+new_interface = model.interfaces.interface.add('GigabitEthernet2')
 
 ## New Interface Status and Description
 new_interface.description = 'NETCONF-CONFIGURED PORT'
 new_interface.enabled = "True"
-#new_interface.type = 'ethernetCsmacd'
+new_interface.type = 'ethernetCsmacd'
 new_interface.link_up_down_trap_enable = 'enabled'
 
 ## IPv4 Configuration
@@ -19,19 +19,19 @@ ipv4add.netmask = '255.255.255.0'
 new_interface.ipv4.enabled = "True"
 new_interface.ipv4.forwarding = "True"
 new_interface.ipv4.mtu = 1500
-#ipv4neighbor = new_interface.ipv4.neighbor.add('2.2.2.2')
+ipv4neighbor = new_interface.ipv4.neighbor.add('2.2.2.2')
 # print ipv4.get()
 
 ## IPv6 Configuration
-#ipv6add = new_interface.ipv6.address.add('2222:2222:2222:2222:2222:2222:2222:2222')
-#new_interface.ipv6.enabled = "True"
-#new_interface.ipv6.forwarding = "True"
-#new_interface.ipv6.dup_addr_detect_transmits = 1
-#new_interface.ipv6.mtu = 1500
-#new_interface.ipv6.autoconf.create_global_addresses = "True"
-#new_interface.ipv6.autoconf.create_temporary_addresses = "False"
-#new_interface.ipv6.autoconf.temporary_valid_lifetime = 604800
-#new_interface.ipv6.autoconf.temporary_preferred_lifetime = 86400
+ipv6add = new_interface.ipv6.address.add('2222:2222:2222:2222:2222:2222:2222:2222')
+new_interface.ipv6.enabled = "True"
+new_interface.ipv6.forwarding = "True"
+new_interface.ipv6.dup_addr_detect_transmits = 1
+new_interface.ipv6.mtu = 1500
+new_interface.ipv6.autoconf.create_global_addresses = "True"
+new_interface.ipv6.autoconf.create_temporary_addresses = "False"
+new_interface.ipv6.autoconf.temporary_valid_lifetime = 604800
+new_interface.ipv6.autoconf.temporary_preferred_lifetime = 86400
 
 
 json_data = pybindJSON.dumps(model, mode='ietf')
